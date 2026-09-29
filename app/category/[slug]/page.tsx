@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { categories, getFishByCategory } from "@/app/lib/fishData";
 import type { Metadata } from "next";
@@ -40,12 +41,11 @@ export default async function CategoryPage(props: PageProps<"/category/[slug]">)
 
       {/* Category Header */}
       <div className="category-header">
-        <div className="category-icon-large">{category.icon}</div>
+        <div className="category-icon-large" style={{ color: "var(--blue-500)", fontWeight: "bold" }}>Z</div>
         <div>
           <h1 className="category-title">{category.name}</h1>
           <p className="category-subtitle">
-            {fishList.length} {fishList.length === 1 ? "species" : "species"}{" "}
-            in this category
+            {fishList.length} species in this category
           </p>
         </div>
       </div>
@@ -61,13 +61,14 @@ export default async function CategoryPage(props: PageProps<"/category/[slug]">)
               id={`card-${fish.slug}`}
             >
               <div className="card">
-                <div
-                  className="species-card-hero"
-                  style={{ background: fish.heroGradient }}
-                >
-                  <span style={{ position: "relative", zIndex: 1 }}>
-                    {fish.emoji}
-                  </span>
+                <div className="species-card-hero">
+                  <Image
+                    src={fish.imagePath}
+                    alt={fish.commonName}
+                    width={600}
+                    height={320}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
                 <div className="species-card-body">
                   <div className="species-card-name">{fish.commonName}</div>
@@ -100,7 +101,7 @@ export default async function CategoryPage(props: PageProps<"/category/[slug]">)
         </div>
       ) : (
         <div className="no-results">
-          <div className="no-results-emoji">🐟</div>
+          <div className="no-results-emoji" style={{ color: "var(--gray-300)" }}>—</div>
           <h3>No species found</h3>
           <p>
             This category doesn&apos;t have any species yet. Check back later or

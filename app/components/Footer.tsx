@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <p className="footer-text">
-          🐠 Zukipedia — The Free Fish Encyclopedia • {new Date().getFullYear()}
+          Zukipedia — The Free Fish Encyclopedia • {new Date().getFullYear()}
         </p>
         <div className="footer-links">
           <Link href="/">Home</Link>

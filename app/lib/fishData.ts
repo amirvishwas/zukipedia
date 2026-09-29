@@ -7,8 +7,8 @@ export interface FishSpecies {
   classname: string;
   phylum: string;
   kingdom: string;
-  emoji: string;
-  heroGradient: string;
+  imagePath: string;
+  imageCredit: string;
   conservationStatus: string;
   conservationLabel: string;
   habitat: string;
@@ -29,12 +29,12 @@ export interface FishSpecies {
 }
 
 export const categories = [
-  { name: "Freshwater Fish", slug: "freshwater", icon: "🏞️", count: 0 },
-  { name: "Saltwater Fish", slug: "saltwater", icon: "🌊", count: 0 },
-  { name: "Sharks & Rays", slug: "sharks-rays", icon: "🦈", count: 0 },
-  { name: "Tropical Fish", slug: "tropical", icon: "🐠", count: 0 },
-  { name: "Deep Sea Fish", slug: "deep-sea", icon: "🌑", count: 0 },
-  { name: "Endangered Species", slug: "endangered", icon: "⚠️", count: 0 },
+  { name: "Freshwater Fish", slug: "freshwater", count: 0 },
+  { name: "Saltwater Fish", slug: "saltwater", count: 0 },
+  { name: "Sharks & Rays", slug: "sharks-rays", count: 0 },
+  { name: "Tropical Fish", slug: "tropical", count: 0 },
+  { name: "Deep Sea Fish", slug: "deep-sea", count: 0 },
+  { name: "Endangered Species", slug: "endangered", count: 0 },
 ];
 
 export const fishDatabase: FishSpecies[] = [
@@ -47,8 +47,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐠",
-    heroGradient: "linear-gradient(135deg, #FF6B35 0%, #F7931E 30%, #FFB347 60%, #FF6B35 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg/800px-Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg",
+    imageCredit: "Nick Hobgood, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "LC",
     conservationLabel: "Least Concern",
     habitat: "Coral reefs in the Indian and Pacific Oceans",
@@ -96,8 +96,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Chondrichthyes",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🦈",
-    heroGradient: "linear-gradient(135deg, #2C3E50 0%, #4A6FA5 30%, #6B8DB2 60%, #2C3E50 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/5/56/White_shark.jpg",
+    imageCredit: "Terry Goss, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "VU",
     conservationLabel: "Vulnerable",
     habitat: "Coastal and offshore waters of all major oceans",
@@ -144,8 +144,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐟",
-    heroGradient: "linear-gradient(135deg, #4A00E0 0%, #8E2DE2 30%, #00D2FF 60%, #4A00E0 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/HM_Orange_M_Sarawut.jpg/800px-HM_Orange_M_Sarawut.jpg",
+    imageCredit: "Sarawut Wongsombat, CC BY-SA 4.0, via Wikimedia Commons",
     conservationStatus: "VU",
     conservationLabel: "Vulnerable",
     habitat: "Rice paddies, floodplains, and shallow freshwater in Southeast Asia",
@@ -192,8 +192,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐟",
-    heroGradient: "linear-gradient(135deg, #0052D4 0%, #4364F7 30%, #6FB1FC 60%, #0052D4 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Paracanthurus_hepatus.jpg",
+    imageCredit: "Tenji, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "LC",
     conservationLabel: "Least Concern",
     habitat: "Coral reefs in the Indo-Pacific",
@@ -235,8 +235,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐡",
-    heroGradient: "linear-gradient(135deg, #0F0C29 0%, #302B63 30%, #24243E 60%, #0F0C29 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Humpback_anglerfish.png",
+    imageCredit: "Javontaevious, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "LC",
     conservationLabel: "Least Concern",
     habitat: "Deep ocean floors, bathypelagic and abyssopelagic zones",
@@ -278,8 +278,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐡",
-    heroGradient: "linear-gradient(135deg, #F7971E 0%, #FFD200 30%, #FF8C00 60%, #F7971E 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gold_fish1.jpg/800px-Gold_fish1.jpg",
+    imageCredit: "Benson Kua, CC BY-SA 2.0, via Wikimedia Commons",
     conservationStatus: "LC",
     conservationLabel: "Least Concern",
     habitat: "Freshwater — ponds, lakes, slow-moving rivers",
@@ -321,8 +321,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Chondrichthyes",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐙",
-    heroGradient: "linear-gradient(135deg, #1A2980 0%, #26D0CE 30%, #4ECDC4 60%, #1A2980 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Manta_birostris-Thailand4.jpg/800px-Manta_birostris-Thailand4.jpg",
+    imageCredit: "jon hanson, CC BY-SA 2.0, via Wikimedia Commons",
     conservationStatus: "EN",
     conservationLabel: "Endangered",
     habitat: "Open oceans, coastal areas, coral reefs",
@@ -365,8 +365,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐡",
-    heroGradient: "linear-gradient(135deg, #11998E 0%, #38EF7D 30%, #00B4DB 60%, #11998E 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Arothron_hispidus_1.jpg/800px-Arothron_hispidus_1.jpg",
+    imageCredit: "Brocken Inaglory, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "LC",
     conservationLabel: "Least Concern (most species)",
     habitat: "Tropical and subtropical oceans, some freshwater species",
@@ -408,8 +408,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Actinopterygii",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐴",
-    heroGradient: "linear-gradient(135deg, #DA22FF 0%, #9733EE 30%, #F953C6 60%, #DA22FF 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Lined_Seahorse_front.jpg/600px-Lined_Seahorse_front.jpg",
+    imageCredit: "Line1, CC BY-SA 3.0, via Wikimedia Commons",
     conservationStatus: "VU",
     conservationLabel: "Vulnerable (many species)",
     habitat: "Shallow tropical and temperate waters, seagrass beds, coral reefs",
@@ -451,8 +451,8 @@ export const fishDatabase: FishSpecies[] = [
     classname: "Chondrichthyes",
     phylum: "Chordata",
     kingdom: "Animalia",
-    emoji: "🐋",
-    heroGradient: "linear-gradient(135deg, #2193B0 0%, #6DD5ED 30%, #0083B0 60%, #2193B0 100%)",
+    imagePath: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Whale_shark_Georgia_aquarium.jpg/800px-Whale_shark_Georgia_aquarium.jpg",
+    imageCredit: "Zac Wolf, CC BY-SA 2.5, via Wikimedia Commons",
     conservationStatus: "EN",
     conservationLabel: "Endangered",
     habitat: "Open tropical and warm-temperate oceans",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { searchFish } from "@/app/lib/fishData";
 import type { Metadata } from "next";
 
@@ -41,13 +42,14 @@ export default async function SearchPage(props: PageProps<"/search">) {
               id={`search-result-${fish.slug}`}
             >
               <div className="card">
-                <div
-                  className="species-card-hero"
-                  style={{ background: fish.heroGradient }}
-                >
-                  <span style={{ position: "relative", zIndex: 1 }}>
-                    {fish.emoji}
-                  </span>
+                <div className="species-card-hero">
+                  <Image
+                    src={fish.imagePath}
+                    alt={fish.commonName}
+                    width={600}
+                    height={320}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
                 <div className="species-card-body">
                   <div className="species-card-name">{fish.commonName}</div>
@@ -71,7 +73,7 @@ export default async function SearchPage(props: PageProps<"/search">) {
         </div>
       ) : (
         <div className="no-results">
-          <div className="no-results-emoji">🔍</div>
+          <div className="no-results-emoji" style={{ color: "var(--gray-300)" }}>—</div>
           <h3>No species found</h3>
           <p>
             {query

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getFishBySlug, fishDatabase, categories } from "@/app/lib/fishData";
 import type { Metadata } from "next";
@@ -46,14 +47,18 @@ export default async function FishArticlePage(props: PageProps<"/fish/[slug]">) 
 
       {/* Article Hero */}
       <div className="article-hero">
-        <div
-          className="article-hero-bg"
-          style={{ background: fish.heroGradient }}
-        >
-          <span className="article-hero-emoji">{fish.emoji}</span>
+        <div className="article-hero-bg">
+          <Image
+            src={fish.imagePath}
+            alt={fish.commonName}
+            width={1200}
+            height={560}
+            priority
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
           <div className="article-hero-overlay">
             <div className="article-hero-label">
-              {category?.icon} {category?.name}
+              {category?.name}
             </div>
             <h1 className="article-hero-title">{fish.commonName}</h1>
             <div className="article-hero-sci">{fish.scientificName}</div>
@@ -73,7 +78,7 @@ export default async function FishArticlePage(props: PageProps<"/fish/[slug]">) 
 
           {/* Table of Contents */}
           <div className="toc" id="table-of-contents">
-            <div className="toc-title">📑 Contents</div>
+            <div className="toc-title">Contents</div>
             <ol className="toc-list">
               {fish.sections.map((section) => (
                 <li key={section.title}>
@@ -110,8 +115,16 @@ export default async function FishArticlePage(props: PageProps<"/fish/[slug]">) 
 
           {/* Did You Know Callout */}
           {fish.didYouKnow && (
-            <div className="dyk-item" style={{ marginTop: "24px" }}>
-              <span className="dyk-icon">💡</span>
+            <div className="dyk-item" style={{ marginTop: "20px" }}>
+              <div className="dyk-icon">
+                <Image
+                  src={fish.imagePath}
+                  alt={fish.commonName}
+                  width={72}
+                  height={72}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
               <p className="dyk-text">
                 <strong>Did you know?</strong> {fish.didYouKnow}
               </p>
@@ -125,7 +138,16 @@ export default async function FishArticlePage(props: PageProps<"/fish/[slug]">) 
             <div className="infobox-header">
               {fish.commonName}
             </div>
-            <div className="infobox-emoji">{fish.emoji}</div>
+            <div className="infobox-image">
+              <Image
+                src={fish.imagePath}
+                alt={fish.commonName}
+                width={520}
+                height={400}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div className="infobox-credit">{fish.imageCredit}</div>
             <table className="infobox-table">
               <tbody>
                 <tr>

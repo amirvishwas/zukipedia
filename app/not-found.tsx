@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="no-results" style={{ paddingTop: "80px" }}>
-      <div className="no-results-emoji">🐡</div>
+      <div className="no-results-emoji" style={{ color: "var(--blue-500)", fontWeight: "bold" }}>404</div>
       <h3 style={{ fontSize: "28px", marginBottom: "12px" }}>
         404 — Species Not Found
       </h3>
@@ -24,17 +24,16 @@ export default function NotFound() {
           alignItems: "center",
           gap: "6px",
           padding: "10px 24px",
-          background: "linear-gradient(135deg, var(--ocean-500), var(--deep-500))",
+          background: "var(--blue-600)",
           color: "white",
-          borderRadius: "12px",
+          borderRadius: "6px",
           textDecoration: "none",
           fontWeight: 600,
           fontSize: "14px",
-          boxShadow: "0 4px 16px rgba(14, 165, 233, 0.3)",
-          transition: "transform 0.2s ease",
+          transition: "background 0.2s ease",
         }}
       >
-        🏠 Return to Main Page
+        Return to Main Page
       </Link>
     </div>
   );

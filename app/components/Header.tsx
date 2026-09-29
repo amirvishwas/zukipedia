@@ -22,7 +22,7 @@ export default function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" className="logo" id="site-logo">
-          <div className="logo-icon">🐠</div>
+          <div className="logo-icon">Z</div>
           <div>
             <div className="logo-text">Zukipedia</div>
             <div className="logo-tagline">The Fish Encyclopedia</div>
@@ -31,7 +31,9 @@ export default function Header() {
 
         <div className="search-container">
           <form className="search-bar" onSubmit={handleSearch}>
-            <span className="search-icon">🔍</span>
+            <span className="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
             <input
               id="search-input"
               type="text"

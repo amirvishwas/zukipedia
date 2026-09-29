@@ -1,69 +1,255 @@
-import Image from "next/image";
+import Link from "next/link";
+import { fishDatabase, categories, getFeaturedFish } from "@/app/lib/fishData";
 
 export default function Home() {
+  const featuredFish = getFeaturedFish();
+  const didYouKnowItems = fishDatabase.filter((f) => f.didYouKnow);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div>
+      {/* Hero Banner */}
+      <div className="hero-banner" id="hero-banner">
+        {/* Floating fish decorations */}
+        <div className="hero-fish">🐠</div>
+        <div className="hero-fish">🐟</div>
+        <div className="hero-fish">🐡</div>
+
+        <div className="hero-content">
+          <div className="hero-eyebrow">
+            <span>🐠</span> Welcome to Zukipedia
+          </div>
+          <h1 className="hero-title">
+            The Free Encyclopedia
+            <br />
+            of Fish Species
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-subtitle">
+            Dive into the fascinating underwater world. Explore detailed articles
+            on hundreds of fish species — from vibrant coral reef dwellers to
+            mysterious deep-sea creatures.
           </p>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <span className="hero-stat-value">{fishDatabase.length}</span>
+              <span className="hero-stat-label">Species</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">{categories.length}</span>
+              <span className="hero-stat-label">Categories</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">
+                {fishDatabase.reduce((acc, f) => acc + f.sections.length, 0)}
+              </span>
+              <span className="hero-stat-label">Sections</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">∞</span>
+              <span className="hero-stat-label">Wonder</span>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="home-grid">
+        {/* Left Column */}
+        <div>
+          {/* Featured Articles */}
+          <div className="card" id="featured-articles">
+            <div className="card-header">
+              <span className="card-header-icon">⭐</span>
+              <span className="card-header-title">Featured Articles</span>
+            </div>
+            <div className="card-body" style={{ padding: 0 }}>
+              {featuredFish.slice(0, 3).map((fish) => (
+                <Link
+                  href={`/fish/${fish.slug}`}
+                  className="featured-article"
+                  key={fish.slug}
+                  id={`featured-${fish.slug}`}
+                >
+                  <div className="card-body">
+                    <div
+                      className="featured-hero-img"
+                      style={{ background: fish.heroGradient, height: "160px" }}
+                    >
+                      <span style={{ fontSize: "72px", position: "relative", zIndex: 1 }}>
+                        {fish.emoji}
+                      </span>
+                    </div>
+                    <div className="featured-info">
+                      <div className="featured-species">
+                        {fish.scientificName}
+                      </div>
+                      <div className="featured-name">{fish.commonName}</div>
+                      <p className="featured-excerpt">
+                        {fish.shortDescription}
+                      </p>
+                      <span className="featured-readmore">
+                        Read full article →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* All Species */}
+          <div className="card" style={{ marginTop: "24px" }} id="all-species">
+            <div className="card-header">
+              <span className="card-header-icon">📚</span>
+              <span className="card-header-title">
+                All Species ({fishDatabase.length})
+              </span>
+            </div>
+            <div className="card-body">
+              <div className="species-list">
+                {fishDatabase.map((fish) => (
+                  <Link
+                    href={`/fish/${fish.slug}`}
+                    className="species-item"
+                    key={fish.slug}
+                    id={`species-${fish.slug}`}
+                  >
+                    <span className="species-item-emoji">{fish.emoji}</span>
+                    <div className="species-item-info">
+                      <div className="species-item-name">
+                        {fish.commonName}
+                      </div>
+                      <div className="species-item-sci">
+                        {fish.scientificName}
+                      </div>
+                    </div>
+                    <span
+                      className={`conservation-badge ${fish.conservationStatus.toLowerCase()}`}
+                      style={{ marginLeft: "auto" }}
+                    >
+                      {fish.conservationStatus}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
+
+        {/* Right Column */}
+        <div>
+          {/* Did You Know */}
+          <div className="card" id="did-you-know">
+            <div className="card-header">
+              <span className="card-header-icon">💡</span>
+              <span className="card-header-title">Did You Know?</span>
+            </div>
+            <div className="card-body">
+              <div className="dyk-list">
+                {didYouKnowItems.slice(0, 5).map((fish) => (
+                  <Link
+                    href={`/fish/${fish.slug}`}
+                    key={fish.slug}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <div className="dyk-item">
+                      <span className="dyk-icon">{fish.emoji}</span>
+                      <p className="dyk-text">
+                        <strong>{fish.commonName}:</strong> {fish.didYouKnow}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Categories */}
+          <div className="card" style={{ marginTop: "20px" }} id="categories-card">
+            <div className="card-header">
+              <span className="card-header-icon">🗂️</span>
+              <span className="card-header-title">Browse by Category</span>
+            </div>
+            <div className="card-body" style={{ padding: "8px 12px" }}>
+              <div className="species-list">
+                {categories.map((cat) => (
+                  <Link
+                    href={`/category/${cat.slug}`}
+                    className="species-item"
+                    key={cat.slug}
+                    id={`home-category-${cat.slug}`}
+                  >
+                    <span className="species-item-emoji">{cat.icon}</span>
+                    <div className="species-item-info">
+                      <div className="species-item-name">{cat.name}</div>
+                      <div className="species-item-sci">
+                        {cat.count} {cat.count === 1 ? "species" : "species"}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Today&apos;s Spotlight */}
+          <div className="card" style={{ marginTop: "20px" }} id="spotlight-card">
+            <div className="card-header">
+              <span className="card-header-icon">🔦</span>
+              <span className="card-header-title">Species Spotlight</span>
+            </div>
+            <div className="card-body">
+              <Link
+                href={`/fish/${fishDatabase[4].slug}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <div
+                  style={{
+                    background: fishDatabase[4].heroGradient,
+                    borderRadius: "12px",
+                    height: "120px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "56px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  {fishDatabase[4].emoji}
+                </div>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    marginBottom: "4px",
+                  }}
+                >
+                  {fishDatabase[4].commonName}
+                </div>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    fontStyle: "italic",
+                    color: "var(--muted)",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {fishDatabase[4].scientificName}
+                </div>
+                <p
+                  style={{
+                    fontSize: "13px",
+                    lineHeight: 1.55,
+                    color: "#475569",
+                    margin: 0,
+                  }}
+                >
+                  {fishDatabase[4].shortDescription}
+                </p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
